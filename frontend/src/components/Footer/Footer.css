@@ -1,0 +1,175 @@
+/* ===== Footer.css ===== */
+/* Modern, responsive footer for food delivery app */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --footer-bg: #0f172a;      /* dark blue-gray */
+  --footer-text: #e2e8f0;    /* light gray */
+  --footer-heading: #f97316; /* orange accent */
+  --footer-border: #334155;
+  --social-hover: #f97316;
+  --transition: all 0.2s ease;
+}
+
+.footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  font-family: 'Inter', sans-serif;
+  padding: 3rem 2rem 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+/* Left section */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left img {
+  height: 50px;
+  width: auto;
+  margin-bottom: 1.5rem;
+  filter: brightness(0) invert(1); /* Makes logo white if it's dark */
+}
+
+.footer-left p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  max-width: 400px;
+}
+
+/* Social icons */
+.footer-social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social-icons img {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: var(--transition);
+  filter: brightness(0) invert(1); /* Make icons white */
+  opacity: 0.8;
+}
+
+.footer-social-icons img:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+  filter: brightness(0) invert(0.7) sepia(1) hue-rotate(350deg) saturate(5); /* Turns icon orange */
+}
+
+/* Center and Right sections */
+.footer-center h2,
+.footer-right h2 {
+  color: var(--footer-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.footer-center ul,
+.footer-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-center li,
+.footer-right li {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+  opacity: 0.9;
+}
+
+.footer-center li:hover,
+.footer-right li:hover {
+  color: var(--footer-heading);
+  transform: translateX(5px);
+}
+
+/* Divider */
+.footer hr {
+  border: none;
+  height: 1px;
+  background-color: var(--footer-border);
+  max-width: 1280px;
+  margin: 2rem auto 1.5rem;
+}
+
+/* Copyright */
+.footer-copyright {
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ===== Responsive Design ===== */
+@media screen and (max-width: 992px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-left {
+    grid-column: span 2;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left p {
+    max-width: 600px;
+  }
+
+  .footer-social-icons {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .footer {
+    padding: 2rem 1rem 1rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-left {
+    grid-column: span 1;
+  }
+
+  .footer-center,
+  .footer-right {
+    text-align: center;
+  }
+
+  .footer-center li:hover,
+  .footer-right li:hover {
+    transform: none; /* Remove horizontal shift on mobile for better UX */
+  }
+
+  .footer-left img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

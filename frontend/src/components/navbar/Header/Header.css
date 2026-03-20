@@ -1,0 +1,154 @@
+/* ===== Header.css ===== */
+/* Modern hero section for food delivery app */
+
+/* Import Google Font for a modern look (optional) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --primary: #f97316;      /* orange-500 */
+  --primary-dark: #ea580c; /* orange-600 */
+  --white: #ffffff;
+  --overlay: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  --transition: all 0.3s ease;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 90vh; /* Full viewport height minus navbar */
+  min-height: 600px; /* Ensures a minimum height on smaller screens */
+  background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); /* Replace with your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Overlay to improve text readability */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay);
+  z-index: 1;
+}
+
+/* Content container */
+.hero-content {
+  position: relative;
+  z-index: 2; /* Above overlay */
+  text-align: center;
+  color: var(--white);
+  max-width: 800px;
+  padding: 0 1.5rem;
+}
+
+/* Main heading */
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Paragraph */
+.hero-content p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 1s ease-out 0.2s backwards;
+}
+
+/* Call-to-action button */
+.hero-content button {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  animation: fadeInUp 1s ease-out 0.4s backwards;
+  letter-spacing: 0.5px;
+}
+
+.hero-content button:hover {
+  background: linear-gradient(135deg, var(--primary-dark), #c2410c);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 20px 30px -10px rgba(249, 115, 22, 0.4);
+}
+
+.hero-content button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow);
+}
+
+/* Fade-in up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive Design ===== */
+@media screen and (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    height: 80vh;
+    min-height: 500px;
+  }
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  .hero-content button {
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+  .hero-content button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}

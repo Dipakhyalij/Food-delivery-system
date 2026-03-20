@@ -1,0 +1,177 @@
+/* ===== ExploreMenu.css ===== */
+/* Modern, responsive category menu for food delivery app */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #f97316;      /* orange-500 */
+  --primary-light: #fb923c; /* orange-400 */
+  --primary-dark: #ea580c;  /* orange-600 */
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --bg-light: #f9fafb;
+  --white: #ffffff;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --transition: all 0.2s ease;
+}
+
+.explore-menu {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--white);
+}
+
+/* Heading */
+.explore-menu h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+/* Description text */
+.explore-menu-text {
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+/* Category list container */
+.explore-menu-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 2rem 1.5rem;
+  justify-items: center;
+  margin-bottom: 3rem;
+}
+
+/* Individual category item */
+.explore-menu-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  max-width: 180px;
+}
+
+/* Image styling */
+.explore-menu-list-item img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%; /* Circular images, common in food apps */
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 3px solid transparent; /* Placeholder for active border */
+}
+
+/* Hover effect on image */
+.explore-menu-list-item:hover img {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Active category image */
+.explore-menu-list-item img.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.3);
+}
+
+/* Category name */
+.explore-menu-list-item p {
+  margin-top: 0.75rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-align: center;
+  transition: var(--transition);
+}
+
+/* Active category name */
+.explore-menu-list-item img.active + p {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Divider */
+.explore-menu hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--primary-light), transparent);
+  margin: 2rem 0 0;
+}
+
+/* ===== Responsive Design ===== */
+
+/* Tablet and small desktop */
+@media screen and (max-width: 768px) {
+  .explore-menu {
+    padding: 3rem 1.5rem;
+  }
+
+  .explore-menu h1 {
+    font-size: 2rem;
+  }
+
+  .explore-menu-text {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .explore-menu-list {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .explore-menu-list-item img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  .explore-menu {
+    padding: 2rem 1rem;
+  }
+
+  .explore-menu h1 {
+    font-size: 1.75rem;
+  }
+
+  .explore-menu-text {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .explore-menu-list {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on mobile */
+    gap: 1rem;
+  }
+
+  .explore-menu-list-item img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .explore-menu-list-item p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Optional: horizontal scroll on very small devices if needed */
+@media screen and (max-width: 360px) {
+  .explore-menu-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
