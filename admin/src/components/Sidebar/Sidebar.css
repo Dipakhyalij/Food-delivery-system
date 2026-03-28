@@ -1,0 +1,62 @@
+/* Sidebar container */
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background: #1e293b;
+  padding: 20px 10px;
+  font-size: max(1vw,10px);
+}
+
+/* Each option row */
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+/* Hover effect */
+.sidebar-option:hover {
+  background: #334155;
+}
+
+/* 🔥 Image size control */
+.sidebar-option img {
+  width: 20px;      /* reduce size */
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Text */
+.sidebar-option p {
+  color: white;
+  font-size: 14px;
+  margin: 0;
+}   
+
+/* 📱 Mobile Devices */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;              /* shrink sidebar */
+    padding: 15px 5px;
+  }
+
+  /* Hide text on small screens */
+  .sidebar-option p {
+    display: none;
+  }
+
+  /* Center icons */
+  .sidebar-option {
+    justify-content: center;
+  }
+
+  /* Smaller icons */
+  .sidebar-option img {
+    width: 22px;
+    height: 22px;
+  }
+}
