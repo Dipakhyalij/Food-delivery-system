@@ -60,3 +60,7 @@
     height: 22px;
   }
 }
+
+.sidebar-option.active {
+  background: #475569;
+}

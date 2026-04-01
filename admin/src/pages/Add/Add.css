@@ -1,0 +1,111 @@
+/* Main Container */
+.add {
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Flex Utility */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Form */
+.add form {
+  width: 100%;
+  gap: 20px;
+}
+
+/* Image Upload */
+.add-img-upload {
+  align-items: center;
+}
+
+.add-img-upload img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-img-upload img:hover {
+  border-color: #007bff;
+}
+
+/* Inputs & Textarea */
+.add input,
+.add textarea,
+.add select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.add input:focus,
+.add textarea:focus,
+.add select:focus {
+  border-color: #007bff;
+}
+
+/* Category & Price Row */
+.add-category-price {
+  display: flex;
+  gap: 20px;
+}
+
+.add-category,
+.add-price {
+  flex: 1;
+}
+
+/* Button */
+.add-btn {
+  padding: 12px;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  background: #0056b3;
+}
+
+/* Labels */
+.add p {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .add {
+    padding: 15px;
+  }
+
+  .add-category-price {
+    flex-direction: column;
+  }
+
+  .add-img-upload img {
+    width: 100px;
+    height: 100px;
+  }
+}
