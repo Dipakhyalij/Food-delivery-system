@@ -1,0 +1,325 @@
+/* ============================================
+   List.css — Food Items Admin Panel
+   Aesthetic: Refined editorial / warm kitchen
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --bg-page:        #faf8f5;
+  --bg-card:        #ffffff;
+  --bg-header:      #1e1a16;
+  --bg-row-hover:   #fff8f0;
+  --accent:         #e86c2c;
+  --accent-soft:    #fdebd8;
+  --text-primary:   #1e1a16;
+  --text-secondary: #7a6f65;
+  --text-light:     #b5a99e;
+  --border:         #ede8e2;
+  --shadow-card:    0 4px 24px rgba(30, 26, 22, 0.07);
+  --shadow-hover:   0 8px 32px rgba(232, 108, 44, 0.12);
+  --radius:         14px;
+  --radius-sm:      8px;
+  --transition:     0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Page Wrapper ── */
+.list {
+  min-height: 100vh;
+  background: var(--bg-page);
+  padding: 40px 32px 60px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-primary);
+}
+
+/* Flex-col utility */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Page Title ── */
+.list > p:first-of-type {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 28px 0;
+  letter-spacing: -0.02em;
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.list > p:first-of-type::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* ── Table Container ── */
+.list-table {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* ── Row Layout (shared by header + data rows) ── */
+.list-table-format {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 100px 80px;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+}
+
+/* ── Header Row ── */
+.list-table-format:first-child {
+  background: var(--bg-header);
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.list-table-format:first-child b {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.list-table-format:first-child b:first-child {
+  color: transparent; /* "Image" label hidden — image speaks for itself */
+}
+
+/* ── Data Rows ── */
+.list-table-format:not(:first-child) {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-top: 1px solid var(--border);
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+  cursor: default;
+  position: relative;
+}
+
+.list-table-format:not(:first-child):hover {
+  background: var(--bg-row-hover);
+  box-shadow: inset 4px 0 0 var(--accent);
+  transform: translateX(2px);
+}
+
+/* ── Food Image ── */
+.list-image {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border);
+  box-shadow: 0 2px 8px rgba(30, 26, 22, 0.1);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: block;
+}
+
+.list-table-format:not(:first-child):hover .list-image {
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(232, 108, 44, 0.2);
+}
+
+/* ── Cell Text ── */
+.list-table-format:not(:first-child) p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Name column — slightly bolder */
+.list-table-format:not(:first-child) p:nth-of-type(1) {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Category — muted */
+.list-table-format:not(:first-child) p:nth-of-type(2) {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* Price — accent color */
+.list-table-format:not(:first-child) p:nth-of-type(3) {
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Delete "X" button ── */
+.list-table-format:not(:first-child) p:last-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text-light);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+  user-select: none;
+  line-height: 1;
+}
+
+.list-table-format:not(:first-child) p:last-child:hover {
+  background: #fee2e2;
+  border-color: #f87171;
+  color: #dc2626;
+  transform: scale(1.15) rotate(10deg);
+}
+
+/* ── Empty State (optional) ── */
+.list-table:empty::after {
+  content: 'No food items found.';
+  display: block;
+  text-align: center;
+  padding: 40px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — Tablet (≤ 768px)
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .list {
+    padding: 24px 16px 48px;
+  }
+
+  .list-table-format {
+    grid-template-columns: 56px 1fr 1fr 80px 48px;
+    gap: 10px;
+    padding: 0 16px;
+  }
+
+  .list-image {
+    width: 46px;
+    height: 46px;
+  }
+
+  .list-table-format:not(:first-child) p:nth-of-type(2) {
+    display: none; /* Hide category on tablet */
+  }
+
+  .list-table-format:first-child b:nth-of-type(3) {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — Mobile (≤ 480px)
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .list {
+    padding: 20px 12px 40px;
+  }
+
+  /* Switch to card-based layout on small screens */
+  .list-table-format:first-child {
+    display: none; /* Hide header row — cards are self-labelled */
+  }
+
+  .list-table {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .list-table-format:not(:first-child) {
+    display: grid;
+    grid-template-columns: 64px 1fr 36px;
+    grid-template-rows: auto auto;
+    gap: 4px 12px;
+    padding: 14px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-card);
+    transform: none;
+  }
+
+  .list-table-format:not(:first-child):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    background: var(--bg-row-hover);
+  }
+
+  /* Image spans 2 rows */
+  .list-image {
+    grid-row: 1 / 3;
+    grid-column: 1;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Name */
+  .list-table-format:not(:first-child) p:nth-of-type(1) {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 0.95rem;
+    align-self: end;
+  }
+
+  /* Category (shown again in card layout) */
+  .list-table-format:not(:first-child) p:nth-of-type(2) {
+    display: block;
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    align-self: start;
+  }
+
+  /* Price — float right on row 1 */
+  .list-table-format:not(:first-child) p:nth-of-type(3) {
+    grid-column: 3;
+    grid-row: 1;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: right;
+    align-self: end;
+  }
+
+  /* Delete button */
+  .list-table-format:not(:first-child) p:last-child {
+    grid-column: 3;
+    grid-row: 2;
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+    justify-self: end;
+    align-self: start;
+  }
+}

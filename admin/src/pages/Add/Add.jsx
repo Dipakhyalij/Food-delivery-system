@@ -2,6 +2,7 @@
   import './Add.css'
   import assets from '../../assets/assets'
   import axios from 'axios'
+  import {toast} from 'react-toastify'
   const Add = () => {
     const [image, setImage] = useState(false)
     const[data, setData] = useState({
@@ -39,9 +40,10 @@
       category: 'Salad',
     });
     setImage(false);
+    toast.success(res.data.message);
   }
 } catch (error) {
-  console.log(error);
+toast.error(error.response?.data?.message || 'An error occurred');    
 }
   }
     return (
