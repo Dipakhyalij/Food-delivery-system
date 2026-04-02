@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 const List = () => {
   const [list, setList] = useState([])
   const url= "http://localhost:3000"
+
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/food/list`)
     console.log(response.data)
@@ -17,6 +18,22 @@ const List = () => {
     }
   }
 
+  const removeFood = async (id) => {
+  try {
+    const response = await axios.delete(`${url}/api/food/remove/${id}`)
+
+    if (response.data.success) {
+      toast.success("Deleted successfully")
+      setList(prev => prev.filter(item => item._id !== id))
+    } else {
+      toast.error(response.data.message)
+    }
+
+  } catch (error) {
+    console.log(error)
+    toast.error("Error deleting item")
+  }
+}
 
 
   useEffect(() => {
@@ -41,7 +58,7 @@ const List = () => {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>{item.price}</p>
-              <p>X</p>
+              <p onClick={() => removeFood(item._id)}>X</p>
             </div>
           )
         }
@@ -50,6 +67,7 @@ const List = () => {
         }
       </div>
     </div>
+
   )
 }
 
