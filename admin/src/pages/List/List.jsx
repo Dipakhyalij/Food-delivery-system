@@ -4,10 +4,9 @@ import axios from 'axios'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-const List = () => {
-  const [list, setList] = useState([])
-  const url= "http://localhost:3000"
 
+const List = ({url}) => {
+  const [list, setList] = useState([])
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/food/list`)
     console.log(response.data)
@@ -67,8 +66,6 @@ const List = () => {
         }
       </div>
     </div>
-
   )
 }
-
 export default List

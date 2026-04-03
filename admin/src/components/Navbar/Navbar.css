@@ -1,40 +1,194 @@
-/* Navbar Container */
+/* ============================================
+   Navbar.css — Admin Panel Navbar
+   Aesthetic: Warm luxury / dark editorial bar
+   Cohesive with List.css warm palette
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables (mirrors List.css) ── */
+:root {
+  --nav-bg:           #d9d9d9;
+  --nav-border:       rgba(255, 255, 255, 0.07);
+  --nav-shadow:       0 2px 24px rgba(0, 0, 0, 0.18);
+  --accent:           #e86c2c;
+  --accent-glow:      rgba(232, 108, 44, 0.25);
+  --text-light:       #b5a99e;
+  --text-muted:       rgba(181, 169, 158, 0.5);
+  --profile-border:   rgba(232, 108, 44, 0.4);
+  --transition:       0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --nav-height:       68px;
+}
+
+/* ── Navbar Wrapper ── */
 .navbar {
-  height: 60px; /* reduced height */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--nav-height);
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 4%;
-  background: #f1f1f1; /* professional dark */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  justify-content: space-between;
+
+  padding: 0 36px;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+
+  /* Subtle noise texture feel via gradient */
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(232, 108, 44, 0.04) 0%,
+      transparent 50%,
+      rgba(255,255,255,0.01) 100%
+    );
+
+  /* Slide-in on load */
+  animation: navSlideDown 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Logo */
+@keyframes navSlideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ── Decorative accent line on bottom ── */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 36px;
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 0 12px var(--accent-glow);
+  animation: accentExpand 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes accentExpand {
+  from { width: 0; opacity: 0; }
+  to   { width: 60px; opacity: 1; }
+}
+
+/* ── Logo ── */
 .navbar .logo {
-  width: 40px;         /* same size as profile */
-  height: 40px;
+  height: 36px;
+  width: auto;
   object-fit: contain;
-  cursor: pointer;
+  display: block;
+
+  /* Slight brightness boost so logo pops on dark bg */
+  filter: brightness(1.05) drop-shadow(0 1px 6px rgba(232,108,44,0.15));
+
+  transition: filter var(--transition), transform var(--transition);
+  animation: fadeInLeft 0.5s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Profile Image */
+.navbar .logo:hover {
+  filter: brightness(1.15) drop-shadow(0 2px 10px rgba(232,108,44,0.3));
+  transform: scale(1.03);
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Right side cluster ── */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ── Profile Image ── */
 .navbar .profile {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  cursor: pointer;
-  border: 2px solid #ffffff;
-  transition: all 0.3s ease;
-}
-
-/* Hover Effect */
-.navbar .profile:hover,
-.navbar .logo:hover {
-  transform: scale(1.08);
-}
-
-/* Optional: spacing fix if needed */
-.navbar img {
   display: block;
+  cursor: pointer;
+
+  border: 2px solid var(--profile-border);
+  box-shadow:
+    0 0 0 4px rgba(232, 108, 44, 0.08),
+    0 2px 12px rgba(0, 0, 0, 0.25);
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+
+  animation: fadeInRight 0.5s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.navbar .profile:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 5px var(--accent-glow),
+    0 4px 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.07);
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Push page content below fixed navbar ── */
+body {
+  padding-top: var(--nav-height);
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+    height: 58px;
+    --nav-height: 58px;
+  }
+
+  .navbar .logo {
+    height: 28px;
+  }
+
+  .navbar .profile {
+    width: 34px;
+    height: 34px;
+  }
+
+  .navbar::after {
+    left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 16px;
+    height: 54px;
+    --nav-height: 54px;
+  }
+
+  .navbar .logo {
+    height: 24px;
+  }
+
+  .navbar .profile {
+    width: 30px;
+    height: 30px;
+  }
 }

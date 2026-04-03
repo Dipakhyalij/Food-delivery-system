@@ -26,11 +26,16 @@
 
 /* ── Page Wrapper ── */
 .list {
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: var(--bg-page);
-  padding: 40px 32px 60px;
+  padding: 40px 32px 32px;
   font-family: 'DM Sans', sans-serif;
   color: var(--text-primary);
+  overflow: hidden;
 }
 
 /* Flex-col utility */
@@ -67,8 +72,36 @@
   background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
-  overflow: hidden;
   border: 1px solid var(--border);
+  overflow-y: auto;
+  max-height: calc(100vh - 160px); /* leaves room for title + padding */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* Webkit scrollbar styling */
+.list-table::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list-table::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.list-table::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}
+
+.list-table::-webkit-scrollbar-thumb:hover {
+  background: var(--text-light);
+}
+
+/* Sticky header inside scrollable table */
+.list-table-format:first-child {
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 /* ── Row Layout (shared by header + data rows) ── */
@@ -211,7 +244,11 @@
 ══════════════════════════════════════════ */
 @media (max-width: 768px) {
   .list {
-    padding: 24px 16px 48px;
+    padding: 24px 16px 16px;
+  }
+
+  .list-table {
+    max-height: calc(100vh - 120px);
   }
 
   .list-table-format {
@@ -239,7 +276,11 @@
 ══════════════════════════════════════════ */
 @media (max-width: 480px) {
   .list {
-    padding: 20px 12px 40px;
+    padding: 20px 12px 12px;
+  }
+
+  .list-table {
+    max-height: calc(100vh - 100px);
   }
 
   /* Switch to card-based layout on small screens */
