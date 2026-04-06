@@ -4,6 +4,18 @@ import { assets } from '../../assets/assets';
 
 const LoginPop = ({ setShowLogin }) => {
   const [currentState, setCurrentState] = useState("Login");
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
+
+  const onChangeHandler = (e) => {
+    const name= event.target.name;
+    const value = event.target.value;
+   setData(data=>({...data, [name]: value}))
+  };
+
 
   return (
     <div className="login-pop">
@@ -14,10 +26,10 @@ const LoginPop = ({ setShowLogin }) => {
         </div>
         <div className="login-popup-input">
           {currentState === "Login" ? null : (
-            <input type="text" placeholder="Your Name" required />
+            <input type="text" name="name" onChange={onChangeHandler} value={data.name} placeholder="Your Name" required />
           )}
-          <input type="email" placeholder="Your Email" required />
-          <input type="password" placeholder="Password" required />
+          <input type="email" name="email" onChange={onChangeHandler} value={data.email} placeholder="Your Email" required />
+          <input type="password" name="password" onChange={onChangeHandler} value={data.password} placeholder="Password" required />
           <button>{currentState === "Sign Up" ? "Create Account" : "Login"}</button>
           <div className="login-popup-condition">
             <input type="checkbox" required />
