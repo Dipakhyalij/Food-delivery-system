@@ -7,7 +7,7 @@
 
     const url= "http://localhost:3000";
     const [cartItem, setCartItems] = useState({});
-  
+    const [token, setToken] = useState("");
 const addToCart = (itemId) => {
   if (!cartItem[itemId]) {
     setCartItems(prev => ({ ...prev, [itemId]: 1 }));
@@ -47,7 +47,9 @@ const contextValue = {
   addToCart,
   removeFromCart,
   getTotalCartAmount,
-  url
+  url,
+  token,
+  setToken
 };
 
 
