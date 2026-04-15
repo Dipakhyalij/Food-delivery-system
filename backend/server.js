@@ -17,7 +17,7 @@ app.use(cors())
 
 //db connection
 
-// connectDB();
+connectDB(); 
 
 
 

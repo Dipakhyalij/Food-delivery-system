@@ -64,11 +64,11 @@ const { getTotalCartAmount, token } = useContext(StoreContext);
             <hr />
             <li><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
           </ul>
-        </div>
+        </div>  
         }
        </div>
        </div>
   )
 }
- 
+
 export default Navbar

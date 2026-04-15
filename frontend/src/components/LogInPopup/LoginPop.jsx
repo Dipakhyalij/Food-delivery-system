@@ -83,7 +83,7 @@ const LoginPop = ({ setShowLogin }) => {
             <p>
               Create a new account? <span onClick={() => setCurrentState("Sign Up")}>Click Here</span>
             </p>
-          ) : (
+          ) : ( 
             <p>
               Already have an account? <span onClick={() => setCurrentState("Login")}>Login Here</span>
             </p>

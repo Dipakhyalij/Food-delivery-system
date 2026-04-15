@@ -5,9 +5,9 @@
 
   const StoreContextProvider = (props) => {
 
-    const url= "http://localhost:3000";
+    const url = "http://localhost:3000";
     const [cartItem, setCartItems] = useState({});
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState(localStorage.getItem("token") || "");
 const addToCart = (itemId) => {
   if (!cartItem[itemId]) {
     setCartItems(prev => ({ ...prev, [itemId]: 1 }));
